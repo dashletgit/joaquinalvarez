@@ -1,74 +1,74 @@
-# Portfolio de Joaquin Alvarez - Game & Level Designer
+[![es](https://img.shields.io/badge/lang-es-red.svg)](README.es.md)
 
-¡Bienvenido al repositorio del portfolio personal de Joaquin Alvarez!
+# Joaquin Alvarez Portfolio - Game & Level Designer
 
-Este sitio web ha sido rediseñado como una **Single Page Application (SPA)** estática. Prioriza la experiencia de usuario mediante una navegación fluida, carga de contenido dinámica a través de modales y una arquitectura de datos modular basada en JSON.
+Welcome to Joaquin Alvarez's personal portfolio repository!
 
-## [Ver el sitio en vivo 🚀](https://dashletgit.github.io/joaquinalvarez/)
+This website has been redesigned as a static **Single Page Application (SPA)**. It prioritizes user experience through fluid navigation, dynamic content loading via modals, and a modular JSON-based data architecture.
 
-## 🛠️ Tecnologías Utilizadas
+## [View Live Site 🚀](https://dashletgit.github.io/joaquinalvarez/)
 
-* **HTML5:** Estructura semántica.
-* **CSS3:** Variables CSS, Flexbox y Grid. Diseño **Fully Responsive** (Móvil, Tablet, Desktop).
+## 🛠️ Technologies Used
+
+* **HTML5:** Semantic structure.
+* **CSS3:** CSS Variables, Flexbox, and Grid. **Fully Responsive** design (Mobile, Tablet, Desktop).
 * **JavaScript (Vanilla ES6+):**
-  * **Fetch API:** Para la carga asíncrona de datos (JSON) y contenido parcial (HTML snippets).
-  * **Modales Dinámicos:** Sistema de ventanas emergentes para ver detalles de proyectos sin recargar la página.
-  * **Carruseles Reutilizables:** Lógica personalizada para carruseles con soporte táctil (touch events) y auto-scroll inteligente.
-* **JSON:** Base de datos ligera para gestionar Proyectos, Skills, Documentos y Carruseles.
-* **Formspree:** Backend-less para el formulario de contacto.
+  * **Fetch API:** For asynchronous data loading (JSON) and partial content fetching (HTML snippets).
+  * **Dynamic Modals:** Popup system to view project details without page reloads.
+  * **Reusable Carousels:** Custom logic for carousels with touch event support and smart auto-scroll.
+* **JSON:** Lightweight database to manage Projects, Skills, Documents, and Carousels.
+* **Formspree:** Backend-less solution for the contact form.
 
-## ✨ Características Principales
+## ✨ Key Features
 
-* **Navegación sin recargas:** Los "Casos de Estudio" se abren en modales inmersivos sobre la misma página.
-* **Arquitectura Modular de Datos:** Todo el contenido (textos, imágenes, enlaces) se administra desde la carpeta `/data/`. No hace falta tocar el HTML principal para añadir un nuevo trabajo.
-* **Secciones Especializadas:**
-  * **Proyectos Principales:** Grid automático con detección de enlaces externos (Steam, Itch.io).
-  * **Other Projects:** Mini-carrusel para prototipos o Game Jams.
-  * **Documents:** Grilla estática estilo "fichero" para GDDs y Tesis.
-  * **Skills & Tools:** Doble carrusel separado lógica y visualmente.
-* **Responsive & Touch Friendly:** Menú hamburguesa animado y carruseles con soporte para gestos en móviles.
+* **No Page Reloads:** "Case Studies" open in immersive modals over the current page.
+* **Modular Data Architecture:** All content (text, images, links) is managed from the `/data/` folder. No need to touch the main HTML to add a new job.
+* **Specialized Sections:**
+  * **Main Projects:** Automatic grid with external link detection (Steam, Itch.io).
+  * **Other Projects:** Mini-carousel for prototypes or Game Jams.
+  * **Documents:** Static "file-cabinet" style grid for GDDs and Thesis papers.
+  * **Skills & Tools:** Dual carousel separated logically and visually.
+* **Responsive & Touch Friendly:** Animated hamburger menu and carousels with gesture support on mobile devices.
 
-## 🚀 Guía de Mantenimiento y Actualización
+## 🚀 Maintenance & Update Guide
 
-El sitio está diseñado para ser mantenido editando archivos de texto simple.
+The site is designed to be maintained by editing simple text files.
 
-### 1. Gestión de Contenido (JSONs)
+### 1. Content Management (JSONs)
 
-Toda la información reside en la carpeta `/data/`. Edita estos archivos para agregar o quitar contenido:
+All information resides in the `/data/` folder. Edit these files to add or remove content:
 
-| Archivo | Descripción |
+| File | Description |
 | :--- | :--- |
-| `mainCarousel.json` | Imágenes del slider gigante al inicio de la página. |
-| `projects.json` | Los proyectos principales (Cards grandes). Define título, tags, imagen y **slug**. |
-| `otherProjects.json` | Proyectos secundarios (Mini carrusel). |
-| `documents.json` | Documentos de diseño (GDDs, Papers) mostrados en grilla. |
-| `skills.json` | Lista de habilidades y herramientas. Usa el campo `"type": "skill"` o `"type": "tool"` para separarlos automáticamente. |
+| `mainCarousel.json` | Images for the giant slider at the top of the page. |
+| `projects.json` | Main projects (Big Cards). Defines title, tags, image, and **slug**. |
+| `otherProjects.json` | Secondary projects (Mini carousel). |
+| `documents.json` | Design documents (GDDs, Papers) shown in a grid. |
+| `skills.json` | List of skills and tools. Use the `"type": "skill"` or `"type": "tool"` field to separate them automatically. |
 
-### 2. Cómo agregar un Nuevo Proyecto Principal
+### 2. How to Add a New Main Project
 
-1. **Crear el contenido HTML:**
-   Crea un archivo nuevo en la carpeta `/content/` con el nombre del proyecto (ej: `nuevo-juego.html`).
-   *Nota: Solo escribe el contenido interno (h1, p, img), no uses etiquetas `<html>` o `<body>`.*
+1. **Create HTML Content:**
+   Create a new file in the `/content/` folder with the project name (e.g., `new-game.html`).
+   *Note: Only write the internal content (h1, p, img), do not use `<html>` or `<body>` tags.*
 
-2. **Registrar en `projects.json`:**
-   Agrega un objeto al array. Lo más importante es que el enlace apunte al archivo que creaste usando el parámetro `page`:
+2. **Register in `projects.json`:**
+    Add an object to the array. The most important part is that the link points to the file you created using the `page` parameter:
 
     ```json
-      {  
-         "title": "Mi Nuevo Juego",
-         "description": "Descripción corta para la card...",
-         "tags": ["Unity", "Level Design"],
-         "imageSrc": "imgs/mi-juego-thumb.jpg",
-         "imageAlt": "Cover",
-         "link": "./pages/proyects.html?page=nuevo-juego", 
-         "externalLink": "[https://store.steampowered.com/](https://store.steampowered.com/)..." 
+      {
+          "title": "My New Game",
+          "description": "Short description for the card...",
+          "tags": ["Unity", "Level Design"],
+          "imageSrc": "imgs/my-game-thumb.jpg",
+          "imageAlt": "Cover",
+          "link": "./pages/proyects.html?page=new-game", 
+          "externalLink": "[https://store.steampowered.com/](https://store.steampowered.com/)..." 
       }
     ```
 
-    El sistema leerá page=nuevo-juego y cargará automáticamente /content/nuevo-juego.html en el modal.
-
-3. **Cómo agregar Skills o Tools:**
-  Edita data/skills.json. El sistema separará automáticamente las listas basándose en el atributo type.
+3. **How to Add Skills or Tools:**
+  Edit `data/skills.json.` The system will automatically separate the lists based on the type attribute.
 
     ``` JSON
       {
@@ -83,20 +83,20 @@ Toda la información reside en la carpeta `/data/`. Edita estos archivos para ag
       }
     ```
 
-## 📂 Estructura de Carpetas
+## 📂 Folder Structure
 
   ``` Plaintext
-        /
-        ├── content/       # Fragmentos HTML de cada proyecto (Lo que se ve en el modal)
-        ├── css/           # Estilos (index.css)
-        ├── data/          # Bases de datos JSON (projects, skills, docs, etc.)
-        ├── imgs/          # Imágenes optimizadas
-        ├── js/            # Lógica (index.js maneja todo: modales, carruseles, fetch)
-        └── index.html     # Punto de entrada único
+    /
+    ├── content/       # HTML fragments for each project (displayed inside the modal)
+    ├── css/           # Styles (index.css)
+    ├── data/          # JSON databases (projects, skills, docs, etc.)
+    ├── imgs/          # Optimized images
+    ├── js/            # Logic (index.js handles everything: modals, carousels, fetch)
+    └── index.html     # Single entry point
   ```
 
-## ✍️ Créditos
+## ✍️ Credits
 
-Portfolio Owner: [Joaquin Alvarez](https://github.com/dashletgit) - Game & Level Designer
+* Portfolio Owner: [Joaquin Alvarez](https://github.com/dashletgit) - Game & Level Designer
 
-Development & Design: [Victor H. Bertolini Agaras](https://github.com/Bertolini-Victor/)
+* Development & Design: [Victor H. Bertolini Agaras](https://github.com/Bertolini-Victor/)

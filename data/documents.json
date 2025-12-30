@@ -1,0 +1,22 @@
+[
+    {
+        "title": "Game Design Document (GDD)",
+        "imageSrc": "https://placehold.co/300x200/2a3333/FFF?text=GDD",
+        "link": "#"
+    },
+    {
+        "title": "Thesis Paper",
+        "imageSrc": "https://placehold.co/300x200/2a3333/FFF?text=Thesis",
+        "link": "#"
+    },
+    {
+        "title": "Level Design Breakdown",
+        "imageSrc": "https://placehold.co/300x200/2a3333/FFF?text=LD+Doc",
+        "link": "#"
+    },
+    {
+        "title": "Post Mortem Analysis",
+        "imageSrc": "https://placehold.co/300x200/2a3333/FFF?text=Post+Mortem",
+        "link": "#"
+    }
+]

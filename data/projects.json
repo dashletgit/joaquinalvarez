@@ -1,0 +1,27 @@
+[
+    {
+        "title": "JUMPCORE",
+        "description": "Jumpcore is a <b>first-person precision platformer</b> that combines momentum-based movement and <b>collectathon exploration across liminal spaces.</b> Descend through the hollow remains of creation using jumps, slides and dashes to recover what was lost in the silence.",
+        "tags": ["Unity", "C#", "Level Design", "Environment Art"],
+        "link": "./pages/proyects.html?page=projectJumpcore",
+        "imageSrc": "imgs/jc_logo.jpg",
+        "imageAlt": "JUMPCORE Logo",
+        "externalLink": "https://store.steampowered.com/app/4041490/Jumpcore/?curator_clanid=4777282"
+    },
+    {
+        "title": "DOOM II Maps",
+        "description": "Compilation of some of my best DOOM maps. <b>I had created over 70 maps.</b> Adquired skills in mapping design, combat and puzzle design, scripting, and environment art.",
+        "tags": ["Level Design", "Modding", "Combat Design", "Environment Art"],
+        "link": "./pages/proyects.html?page=projectLD2",
+        "imageSrc": "imgs/doom_logo.png",
+        "imageAlt": "DOOM Logo"
+    },
+    {
+        "title": "Wandering Below",
+        "description": "Wandering Below is a 2D platformer game with a heavy emphasis on exploration. The game consist of one big level with multiple paths to take, where the player must find a certain number of gems to unlock the exit.",
+        "tags": ["Construct3", "Level Design", "Game Design"],
+        "link": "./pages/proyects.html?page=projectWB",
+        "imageSrc": "imgs/wb_title.png",
+        "imageAlt": "Wandering Below Title"
+    }
+]

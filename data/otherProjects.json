@@ -1,0 +1,22 @@
+[
+    {
+        "title": "Global Game Jam 2024",
+        "imageSrc": "https://placehold.co/300x200/333/FFF?text=GGJ+2024"
+    },
+    {
+        "title": "Pixel Art Shader",
+        "imageSrc": "https://placehold.co/300x200/553/FFF?text=Shader"
+    },
+    {
+        "title": "Physics Prototype",
+        "imageSrc": "https://placehold.co/300x200/733/FFF?text=Physics"
+    },
+    {
+        "title": "UI Kit for Unity",
+        "imageSrc": "https://placehold.co/300x200/353/FFF?text=UI+Kit"
+    },
+    {
+        "title": "Procedural Dungeon",
+        "imageSrc": "https://placehold.co/300x200/337/FFF?text=Dungeon"
+    }
+]

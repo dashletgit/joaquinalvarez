@@ -20,8 +20,12 @@
             </div>
             <div class="container-navLinks">
                 <ul class="ulNav">
+                    <li class="liNav"><a href="https://drive.google.com/file/d/17tWkDIV6XMa9ijCqoI4t5v-l3ailDll6/view " target="_blank">View Resume</a></li>
                     <li class="liNav"><a class="aNav" href="#aboutMeH2">About Me</a></li>
                     <li class="liNav"><a class="aNav" href="#projects">Projects</a></li>
+                    <li class="liNav"><a class="aNav" href="#other-projects">Other Projects</a></li>
+                    <li class="liNav"><a class="aNav" href="#documents">Documents</a></li>
+                    <li class="liNav"><a class="aNav" href="#skills">Skills & Tools</a></li>
                     <li class="liNav"><a class="aNav" href="#contact">Contact</a></li>
                 </ul>
             </div>
@@ -62,7 +66,7 @@
                 <p>I have worked on academic, independent, and professional projects, developing everything from 2D games to 3D environments, always with the goal of creating challenging and meaningful player experiences.</p>
                 <p>I also have a modding background: Developed polished custom levels for games such as DOOM, Quake, Counter-Strike, Super Mario World and Half-Life. Recognized for their design quality and attention to detail.</p>
                 <div class="card-buttons">
-                    <a href="https://drive.google.com/file/d/17tWkDIV6XMa9ijCqoI4t5v-l3ailDll6/view " target="_blank" class="btn btn-primary">View Resume</a>
+                    <a href="https://drive.google.com/file/d/17tWkDIV6XMa9ijCqoI4t5v-l3ailDll6/view " target="_blank" class="btn btn-secondary">View Resume</a>
                     <a href="#contact" class="btn btn-secondary">Contact Me</a>
                 </div>
             </div>
@@ -70,63 +74,34 @@
         <section id="projects" class="cProjects">
             <div class="container-cards-projects">
                 <h2>Projects</h2>
-                <article class="project-card">
-                    <div class="project-info">
-                        <h3>JUMPCORE</h3>
-                        <p>Jumpcore is a <b>first-person precision platformer</b> that combines momentum-based movement and <b>collectathon exploration across liminal spaces.</b> Descend through the hollow remains of creation using jumps, slides and dashes to recover what was lost in the silence.</p>
-                        <div class="project-tags">
-                            <span>Unity</span>
-                            <span>C#</span>
-                            <span>Level Design</span>
-                            <span>Environment Art</span>
-                        </div>
-                        <a href="./pages/proyects.html?page=projectJumpcore" 
-                        class="btn btn-primary" 
-                        rel="noopener noreferrer">View case study</a>
-                    </div>
-                    <div class="project-media">
-                        <img src="imgs/jc_logo.jpg" alt="JUMPCORE">
-                    </div>
-                </article>
             </div>
-                        <div class="container-cards-projects">
-                <article class="project-card">
-                    <div class="project-info">
-                        <h3>DOOM II Maps</h3>
-                        <p>Compilation of some of my best DOOM maps. <b>I had created over 70 maps.</b> Adquired skills in mapping design, combat and puzzle design, scripting, and environment art. </p>
-                        <div class="project-tags">
-                            <span>Level Design</span>
-                            <span>Modding</span>
-                            <span>Combat Design</span>
-                            <span>Environment Art</span>
-                        </div>
-                        <a href="./pages/proyects.html?page=projectLD2" 
-                        class="btn btn-primary" 
-                        rel="noopener noreferrer">View case study</a>
-                    </div>
-                    <div class="project-media">
-                        <img src="imgs/doom_logo.png" alt="DOOM">
-                    </div>
-                </article>
+            <div id="projects-grid" class="projects-grid"></div>
+        </section>
+        <section id="other-projects" class="other-projects-section">
+            <h2 class="section-title">Other Projects</h2>
+            <div class="mini-carousel-wrapper">
+                <button id="mini-prev" class="mini-nav-btn left" aria-label="Anterior">&#10094;</button>
+                <div id="other-projects-track" class="mini-carousel-track"></div>
+                <button id="mini-next" class="mini-nav-btn right" aria-label="Siguiente">&#10095;</button>
             </div>
-                        <div class="container-cards-projects">
-                <article class="project-card">
-                    <div class="project-info">
-                        <h3>Wandering Below</h3>
-                        <p>Wandering Below is a 2D platformer game with a heavy emphasis on exploration. The game consist of one big level with multiple paths to take, where the player must find a certain number of gems to unlock the exit. </p>
-                        <div class="project-tags">
-                            <span>Construct3</span>
-                            <span>Level Design</span>
-                            <span>Game Design</span>
-                        </div>
-                        <a href="./pages/proyects.html?page=projectWB" 
-                        class="btn btn-primary" 
-                        rel="noopener noreferrer">View case study</a>
-                    </div>
-                    <div class="project-media">
-                        <img src="imgs/wb_title.png" alt="Wandering Below">
-                    </div>
-                </article>
+        </section>
+        <section id="documents" class="other-projects-section">
+            <h2 class="section-title">Documents</h2>
+            <div id="documents-grid" class="documents-grid-container"></div>
+        </section>
+        <section id="skills" class="other-projects-section">
+            <h2 class="section-title">Skills & Tools</h2>
+            <h3 class="subsection-title">Skills</h3>
+            <div class="mini-carousel-wrapper narrow-carousel">
+                <button id="skills-prev" class="mini-nav-btn left" aria-label="Anterior">&#10094;</button>
+                <div id="skills-track" class="mini-carousel-track centered-track"></div>
+                <button id="skills-next" class="mini-nav-btn right" aria-label="Siguiente">&#10095;</button>
+            </div>
+            <h3 class="subsection-title">Tools</h3>
+            <div class="mini-carousel-wrapper narrow-carousel">
+                <button id="tools-prev" class="mini-nav-btn left" aria-label="Anterior">&#10094;</button>
+                <div id="tools-track" class="mini-carousel-track centered-track"></div>
+                <button id="tools-next" class="mini-nav-btn right" aria-label="Siguiente">&#10095;</button>
             </div>
         </section>
         <section id="contact" class="cContact">
@@ -160,9 +135,15 @@
             </p>
         </div>
     </footer>
+
+    <div id="project-modal" class="modal-overlay" aria-hidden="true">
+        <div class="modal-container">
+            <button class="modal-close-btn" aria-label="Cerrar modal">&times;</button>
+            <div id="modal-body" class="project-detail-container">
+                </div>
+        </div>
+    </div>
     <!-- JS Scripts -->
-    <script src="./js/date.js "></script>
-    <script src="./js/mobile.js"></script>
-    <script src="./js/carousel.js"></script>
+    <script src="./js/index.js "></script>
 </body>
 </html>

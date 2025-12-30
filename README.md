@@ -1,90 +1,65 @@
 # Portfolio de Joaquin Alvarez - Game & Level Designer
 
-¡Bienvenido al repositorio del portfolio personal de Joaquin Alvarez, un Game & Level Designer!
+¡Bienvenido al repositorio del portfolio personal de Joaquin Alvarez!
 
-Este sitio web está diseñado con un enfoque minimalista para poner el foco en los proyectos. Está construido con HTML, CSS y JavaScript vainilla, y alojado estáticamente en GitHub Pages.
+Este sitio web ha sido rediseñado como una **Single Page Application (SPA)** estática. Prioriza la experiencia de usuario mediante una navegación fluida, carga de contenido dinámica a través de modales y una arquitectura de datos modular basada en JSON.
 
 ## [Ver el sitio en vivo 🚀](https://dashletgit.github.io/joaquinalvarez/)
 
 ## 🛠️ Tecnologías Utilizadas
 
-* **HTML5:** Para la estructura semántica.
-* **CSS3:** Para todos los estilos, usando Flexbox y Grid para un layout responsive.
-* **JavaScript (ES6+):** Para toda la interactividad, incluyendo:
-  * Carrusel de proyectos dinámico.
-  * Carga de contenido de proyectos desde "snippets".
-  * Actualización automática del año en el footer.
-* **JSON:** Para alimentar el carrusel de la página principal.
-* **Formspree:** Para gestionar el formulario de contacto sin necesidad de un backend.
-* **GitHub Pages:** Para el hosting gratuito del sitio estático.
+* **HTML5:** Estructura semántica.
+* **CSS3:** Variables CSS, Flexbox y Grid. Diseño **Fully Responsive** (Móvil, Tablet, Desktop).
+* **JavaScript (Vanilla ES6+):**
+  * **Fetch API:** Para la carga asíncrona de datos (JSON) y contenido parcial (HTML snippets).
+  * **Modales Dinámicos:** Sistema de ventanas emergentes para ver detalles de proyectos sin recargar la página.
+  * **Carruseles Reutilizables:** Lógica personalizada para carruseles con soporte táctil (touch events) y auto-scroll inteligente.
+* **JSON:** Base de datos ligera para gestionar Proyectos, Skills, Documentos y Carruseles.
+* **Formspree:** Backend-less para el formulario de contacto.
 
 ## ✨ Características Principales
 
-* **100% Estático:** Rápido, seguro y fácil de hostear.
-* **Diseño Minimalista:** Paleta de colores limpia (blanco y coral) para un portfolio profesional.
-* **Carga de Proyectos "Sin Base de Datos":** El sitio utiliza una arquitectura de "página plantilla". Hay un único `proyecto.html` que funciona como un "marco".
-* **Contenido Flexible por "Snippets":** La información de cada proyecto se carga desde archivos HTML individuales (`/content/proyecto-1.html`, `/content/proyecto-2.html`). Esto le da al dueño total libertad creativa para la estructura de cada página de proyecto (videos, galerías, texto) sin tocar el código principal.
-* **Componentes Dinámicos:** El carrusel de la home se genera dinámicamente leyendo un archivo `proyectos.json`.
+* **Navegación sin recargas:** Los "Casos de Estudio" se abren en modales inmersivos sobre la misma página.
+* **Arquitectura Modular de Datos:** Todo el contenido (textos, imágenes, enlaces) se administra desde la carpeta `/data/`. No hace falta tocar el HTML principal para añadir un nuevo trabajo.
+* **Secciones Especializadas:**
+  * **Proyectos Principales:** Grid automático con detección de enlaces externos (Steam, Itch.io).
+  * **Other Projects:** Mini-carrusel para prototipos o Game Jams.
+  * **Documents:** Grilla estática estilo "fichero" para GDDs y Tesis.
+  * **Skills & Tools:** Doble carrusel separado lógica y visualmente.
+* **Responsive & Touch Friendly:** Menú hamburguesa animado y carruseles con soporte para gestos en móviles.
 
-## 🚀 Cómo Actualizar el Contenido
+## 🚀 Guía de Mantenimiento y Actualización
 
-Este sitio está diseñado para que sea fácil de actualizar por el dueño.
+El sitio está diseñado para ser mantenido editando archivos de texto simple.
 
-### 1. Añadir un Proyecto al Carrusel (Home)
+### 1. Gestión de Contenido (JSONs)
 
-1. Abre el archivo `proyectos.json` en la raíz del repositorio.
-2. Añade un nuevo objeto al array, siguiendo la estructura existente. Asegúrate de que el `id` sea único.
+Toda la información reside en la carpeta `/data/`. Edita estos archivos para agregar o quitar contenido:
 
-    ```json
-    [
-      {
-        "id": "1",
-        "imageUrl": "img/proyecto-1.jpg",
-        "altText": "Imagen del Proyecto 1",
-        "title": "PROYECTO: \"CYBER RUNNER\""
-      },
-      {
-        "id": "2",
-        "imageUrl": "img/proyecto-2.jpg",
-        "altText": "Imagen del Proyecto 2",
-        "title": "PROYECTO: \"ASTRA\""
-      },
-      {
-        "id": "nuevo-id-aqui",
-        "imageUrl": "img/nuevo-proyecto.jpg",
-        "altText": "Texto alternativo",
-        "title": "NUEVO PROYECTO"
-      }
-    ]
-    ```
+| Archivo | Descripción |
+| :--- | :--- |
+| `mainCarousel.json` | Imágenes del slider gigante al inicio de la página. |
+| `projects.json` | Los proyectos principales (Cards grandes). Define título, tags, imagen y **slug**. |
+| `otherProjects.json` | Proyectos secundarios (Mini carrusel). |
+| `documents.json` | Documentos de diseño (GDDs, Papers) mostrados en grilla. |
+| `skills.json` | Lista de habilidades y herramientas. Usa el campo `"type": "skill"` o `"type": "tool"` para separarlos automáticamente. |
 
-### 2. Crear una nueva Página de Detalle de Proyecto
+### 2. Cómo agregar un Nuevo Proyecto Principal
 
-1. **Crea el "Snippet":** En la carpeta `/content/`, crea un nuevo archivo HTML. El nombre debe ser un "slug" (ej. `mi-nuevo-proyecto.html`).
-2. **Escribe el Contenido:** Dentro de ese archivo, escribe **solo el contenido** (sin `<html>` o `<body>`). Puedes usar HTML libremente y aplicar las clases CSS ya definidas en `style.css` (ej. `.video-responsive`, `.gallery-2-col`).
+1. **Crear el contenido HTML:**
+   Crea un archivo nuevo en la carpeta `/content/` con el nombre del proyecto (ej: `nuevo-juego.html`).
+   *Nota: Solo escribe el contenido interno (h1, p, img), no uses etiquetas `<html>` o `<body>`.*
 
-    ```html
-    <h1>Mi Nuevo Proyecto</h1>
-    <img src="img/mi-proyecto-header.jpg" alt="Header">
-    <p>Esta es la descripción...</p>
-    
-    <h2>Gameplay</h2>
-    <div class="video-responsive">
-      <iframe src="..."></iframe>
-    </div>
-    ```
+2. **Registrar en `projects.json`:**
+   Agrega un objeto al array. Lo más importante es que el enlace apunte al archivo que creaste usando el parámetro `page`:
 
-3. **Enlaza el Proyecto:** En `index.html`, en la tarjeta del proyecto correspondiente, asegúrate de que el botón apunte a la página `proyecto.html` usando el "slug" como parámetro:
-
-    ```html
-    <a href="proyecto.html?page=mi-nuevo-proyecto" class="btn btn-primary">
-        View case study
-    </a>
-    ```
-
-## ✍️ Autor y Diseñador
-
-Diseñado y desarrollado por **Victor H. Bertolini Agaras** para **Joaquin Alvarez**.
-
-* **GitHub:** [Victor Bertolini](https://github.com/Bertolini-Victor)
-* **LinkedIn:** [Victor Bertolini](https://www.linkedin.com/in/victor-bertolini/)
+   ```json
+   {
+       "title": "Mi Nuevo Juego",
+       "description": "Descripción corta para la card...",
+       "tags": ["Unity", "Level Design"],
+       "imageSrc": "imgs/mi-juego-thumb.jpg",
+       "imageAlt": "Cover",
+       "link": "./pages/proyects.html?page=nuevo-juego", 
+       "externalLink": "[https://store.steampowered.com/](https://store.steampowered.com/)..." 
+   }

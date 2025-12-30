@@ -21,11 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `
     });
-
     // 2. SKILLS & TOOLS (Separa y crea dos carruseles)
     renderSkillsAndTools();
-
-    // 3. DOCUMENTOS (NUEVO: Grilla Estática)
+    // 3. DOCUMENTOS
     renderDocumentsGrid();
 });
 
@@ -40,25 +38,31 @@ function updateFooterYear() {
 }
 
 // ========================================
-// NAVEGACIÓN MÓVIL
+// NAVEGACIÓN MÓVIL 
 // ========================================
 function initMobileNavigation() {
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.container-navLinks');
-    const navLinks = document.querySelectorAll('.aNav');
-
+    const navLinks = document.querySelectorAll('.aNav'); 
     if (!navToggle || !navMenu) return;
 
     // Toggle del menú
     navToggle.addEventListener('click', () => {
         const isOpen = navMenu.classList.toggle('is-open');
         updateNavToggleUI(navToggle, isOpen);
+        if (isOpen) {
+            document.body.classList.add('no-scroll');
+        } else {
+            document.body.classList.remove('no-scroll');
+        }
     });
 
+    // Cerrar al hacer click en un link
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             navMenu.classList.remove('is-open');
             updateNavToggleUI(navToggle, false);
+            document.body.classList.remove('no-scroll');
         });
     });
 }
@@ -385,81 +389,16 @@ function closeProjectModal() {
     }
 }
 
-// Event Listeners para cerrar
 if (closeModalBtn) closeModalBtn.addEventListener('click', closeProjectModal);
 if (modalOverlay) {
     modalOverlay.addEventListener('click', (e) => {
         if (e.target === modalOverlay) closeProjectModal();
     });
 }
+
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeProjectModal();
 });
-
-// ========================================
-// UTILIDAD: Setup Genérico 
-// ========================================
-async function setupMiniCarousel({ jsonPath, trackId, prevBtnId, nextBtnId, renderCard, scrollAmount = 240 }) {
-    const track = document.getElementById(trackId);
-    if (!track) return;
-
-    try {
-        const response = await fetch(jsonPath);
-        if (!response.ok) throw new Error(`Error cargando ${jsonPath}`);
-        const rawItems = await response.json();
-        const items = [...rawItems, ...rawItems]; 
-        track.innerHTML = items.map(renderCard).join('');
-        enableCarouselLogic(trackId, prevBtnId, nextBtnId, scrollAmount);
-    } catch (error) {
-        console.error(`Error en carrusel ${trackId}:`, error);
-    }
-}
-
-// ========================================
-// UTILIDAD: Lógica de Movimiento 
-// ========================================
-function enableCarouselLogic(trackId, prevBtnId, nextBtnId, scrollAmount) {
-    const track = document.getElementById(trackId);
-    const btnPrev = document.getElementById(prevBtnId);
-    const btnNext = document.getElementById(nextBtnId);
-
-    if (!track) return;
-
-    let scrollInterval;
-    const SCROLL_DELAY = 3000;
-
-    const startAutoPlay = () => {
-        clearInterval(scrollInterval);
-        scrollInterval = setInterval(() => {
-            const maxScrollLeft = track.scrollWidth - track.clientWidth;
-            if (track.scrollLeft >= maxScrollLeft - 5) {
-                track.scrollTo({ left: 0, behavior: 'smooth' });
-            } else {
-                track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-            }
-        }, SCROLL_DELAY);
-    };
-
-    const stopAutoPlay = () => clearInterval(scrollInterval);
-    startAutoPlay();
-    track.addEventListener('mouseenter', stopAutoPlay);
-    track.addEventListener('mouseleave', startAutoPlay);
-
-    if (btnNext && btnPrev) {
-        btnNext.addEventListener('click', () => {
-            stopAutoPlay();
-            track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        });
-
-        btnPrev.addEventListener('click', () => {
-            stopAutoPlay();
-            track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-        });
-        
-        btnNext.addEventListener('mouseenter', stopAutoPlay);
-        btnPrev.addEventListener('mouseenter', stopAutoPlay);
-    }
-}
 
 // ========================================
 // RENDERIZADO DE DOCUMENTOS (GRILLA ESTÁTICA)
@@ -499,13 +438,12 @@ async function renderDocumentsGrid() {
 }
 
 // ========================================
-// LÓGICA DE SKILLS & TOOLS (Modificada)
+// LÓGICA DE SKILLS & TOOLS
 // ========================================
 async function renderSkillsAndTools() {
     try {
         const response = await fetch('./data/skills.json');
         if (!response.ok) throw new Error('Error cargando skills.json');
-        
         const rawData = await response.json();
         const skillsData = rawData.filter(item => item.type === 'skill');
         const toolsData = rawData.filter(item => item.type === 'tool');
@@ -519,23 +457,22 @@ async function renderSkillsAndTools() {
             </div>
         `;
 
+        // 1. SKILLS
         const skillsTrack = document.getElementById('skills-track');
         if (skillsTrack && skillsData.length > 0) {
             skillsTrack.innerHTML = skillsData.map(renderSkillCard).join('');
-            if (skillsData.length > 4) {
-                enableCarouselLogic('skills-track', 'skills-prev', 'skills-next', 180); 
-            } else {
-                // Opcional: Ocultar botones si no son necesarios
+            enableCarouselLogic('skills-track', 'skills-prev', 'skills-next', 180);
+            if (skillsData.length <= 4) {
                 hideControls('skills-prev', 'skills-next');
             }
         }
 
+        // 2. TOOLS
         const toolsTrack = document.getElementById('tools-track');
         if (toolsTrack && toolsData.length > 0) {
             toolsTrack.innerHTML = toolsData.map(renderSkillCard).join('');
-            if (toolsData.length > 4) {
-                enableCarouselLogic('tools-track', 'tools-prev', 'tools-next', 180);
-            } else {
+            enableCarouselLogic('tools-track', 'tools-prev', 'tools-next', 180);
+            if (toolsData.length <= 4) {
                 hideControls('tools-prev', 'tools-next');
             }
         }
@@ -545,10 +482,73 @@ async function renderSkillsAndTools() {
     }
 }
 
-// Función auxiliar para ocultar flechas si hay pocos elementos
+// ========================================
+// FUNCIONES AUXILIARES
+// ========================================
 function hideControls(prevId, nextId) {
     const prev = document.getElementById(prevId);
     const next = document.getElementById(nextId);
     if (prev) prev.style.display = 'none';
     if (next) next.style.display = 'none';
+}
+
+async function setupMiniCarousel({ jsonPath, trackId, prevBtnId, nextBtnId, renderCard, scrollAmount = 240 }) {
+    const track = document.getElementById(trackId);
+    if (!track) return;
+
+    try {
+        const response = await fetch(jsonPath);
+        if (!response.ok) throw new Error(`Error cargando ${jsonPath}`);
+        const rawItems = await response.json();
+        const items = [...rawItems, ...rawItems]; 
+        track.innerHTML = items.map(renderCard).join('');
+        enableCarouselLogic(trackId, prevBtnId, nextBtnId, scrollAmount);
+    } catch (error) {
+        console.error(`Error en carrusel ${trackId}:`, error);
+    }
+}
+
+function enableCarouselLogic(trackId, prevBtnId, nextBtnId, scrollAmount) {
+    const track = document.getElementById(trackId);
+    const btnPrev = document.getElementById(prevBtnId);
+    const btnNext = document.getElementById(nextBtnId);
+
+    if (!track) return;
+    let scrollInterval;
+    const SCROLL_DELAY = 3000;
+
+    const startAutoPlay = () => {
+        clearInterval(scrollInterval);
+        scrollInterval = setInterval(() => {
+            const maxScrollLeft = track.scrollWidth - track.clientWidth;
+            if (maxScrollLeft <= 0) return;
+            if (track.scrollLeft >= maxScrollLeft - 5) {
+                track.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
+        }, SCROLL_DELAY);
+    };
+
+    const stopAutoPlay = () => clearInterval(scrollInterval);
+    startAutoPlay();
+    track.addEventListener('mouseenter', stopAutoPlay);
+    track.addEventListener('mouseleave', startAutoPlay);
+    track.addEventListener('touchstart', stopAutoPlay, { passive: true });
+    track.addEventListener('touchend', startAutoPlay);
+
+    if (btnNext && btnPrev) {
+        btnNext.addEventListener('click', () => {
+            stopAutoPlay();
+            track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+
+        btnPrev.addEventListener('click', () => {
+            stopAutoPlay();
+            track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        });
+        
+        btnNext.addEventListener('mouseenter', stopAutoPlay);
+        btnPrev.addEventListener('mouseenter', stopAutoPlay);
+    }
 }

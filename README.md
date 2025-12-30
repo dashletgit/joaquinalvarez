@@ -53,13 +53,50 @@ Toda la información reside en la carpeta `/data/`. Edita estos archivos para ag
 2. **Registrar en `projects.json`:**
    Agrega un objeto al array. Lo más importante es que el enlace apunte al archivo que creaste usando el parámetro `page`:
 
-   ```json
-   {
-       "title": "Mi Nuevo Juego",
-       "description": "Descripción corta para la card...",
-       "tags": ["Unity", "Level Design"],
-       "imageSrc": "imgs/mi-juego-thumb.jpg",
-       "imageAlt": "Cover",
-       "link": "./pages/proyects.html?page=nuevo-juego", 
-       "externalLink": "[https://store.steampowered.com/](https://store.steampowered.com/)..." 
-   }
+    ```json
+      {  
+         "title": "Mi Nuevo Juego",
+         "description": "Descripción corta para la card...",
+         "tags": ["Unity", "Level Design"],
+         "imageSrc": "imgs/mi-juego-thumb.jpg",
+         "imageAlt": "Cover",
+         "link": "./pages/proyects.html?page=nuevo-juego", 
+         "externalLink": "[https://store.steampowered.com/](https://store.steampowered.com/)..." 
+      }
+    ```
+
+    El sistema leerá page=nuevo-juego y cargará automáticamente /content/nuevo-juego.html en el modal.
+
+3. **Cómo agregar Skills o Tools:**
+  Edita data/skills.json. El sistema separará automáticamente las listas basándose en el atributo type.
+
+    ``` JSON
+      {
+          "name": "Unreal Engine 5",
+          "logoSrc": "imgs/ue5_logo.png",
+          "type": "tool" 
+      },
+      {
+          "name": "Team Leadership",
+          "logoSrc": "imgs/icon_lead.png",
+          "type": "skill"
+      }
+    ```
+
+## 📂 Estructura de Carpetas
+
+  ``` Plaintext
+        /
+        ├── content/       # Fragmentos HTML de cada proyecto (Lo que se ve en el modal)
+        ├── css/           # Estilos (index.css)
+        ├── data/          # Bases de datos JSON (projects, skills, docs, etc.)
+        ├── imgs/          # Imágenes optimizadas
+        ├── js/            # Lógica (index.js maneja todo: modales, carruseles, fetch)
+        └── index.html     # Punto de entrada único
+  ```
+
+## ✍️ Créditos
+
+Portfolio Owner: [Joaquin Alvarez](https://github.com/dashletgit) - Game & Level Designer
+
+Development & Design: [Victor H. Bertolini Agaras](https://github.com/Bertolini-Victor/)
